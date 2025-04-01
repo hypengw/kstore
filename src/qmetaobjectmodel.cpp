@@ -8,8 +8,21 @@ namespace meta_model
 namespace detail
 {
 QMetaListModelBase::QMetaListModelBase(QObject* parent)
-    : QMetaModelBase<QAbstractListModel>(parent) {}
+    : QMetaModelBase<QAbstractListModel>(parent), m_has_more(false) {}
 QMetaListModelBase::~QMetaListModelBase() {}
+auto QMetaListModelBase::hasMore() const -> bool { return m_has_more; }
+void QMetaListModelBase::setHasMore(bool v) {
+    if (m_has_more != v) {
+        m_has_more = v;
+        hasMoreChanged(v);
+    }
+}
+bool QMetaListModelBase::canFetchMore(const QModelIndex&) const { return m_has_more; }
+void QMetaListModelBase::fetchMore(const QModelIndex&) {
+    setHasMore(false);
+    reqFetchMore(rowCount());
+}
+
 } // namespace detail
 
 void detail::update_role_names(QHash<int, QByteArray>& role_names, const QMetaObject& meta) {
