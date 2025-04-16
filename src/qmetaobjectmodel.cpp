@@ -31,7 +31,8 @@ void detail::update_role_names(QHash<int, QByteArray>& role_names, const QMetaOb
     auto roleIndex = Qt::UserRole + 1;
     for (auto i = 0; i < meta.propertyCount(); i++) {
         auto prop = meta.property(i);
-        role_names.insert(roleIndex++, prop.name());
+        role_names.insert(roleIndex, prop.name());
+        ++roleIndex;
     }
 }
 
