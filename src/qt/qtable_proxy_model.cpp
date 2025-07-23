@@ -1,6 +1,6 @@
-#include "meta_model/qtable_proxy_model.hpp"
+#include "kstore/qt/qtable_proxy_model.hpp"
 
-namespace meta_model
+namespace kstore
 {
 QTableProxyModel::QTableProxyModel(QObject* parent): QAbstractProxyModel(parent) {
     connect(this, &QTableProxyModel::columnNamesChanged, this, &QTableProxyModel::syncColumns);
@@ -174,6 +174,4 @@ void QTableProxyModel::sourceLayoutChanged(const QList<QPersistentModelIndex>&  
 void QTableProxyModel::sourceAboutToBeReset() { beginResetModel(); }
 void QTableProxyModel::sourceReset() { endResetModel(); }
 
-} // namespace meta_model
-
-#include "meta_model/moc_qtable_proxy_model.cpp"
+} // namespace kstore
