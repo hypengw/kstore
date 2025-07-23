@@ -12,12 +12,12 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 option(KSTORE_BUILD_TESTS "Build tests" ${PROJECT_IS_TOP_LEVEL})
 
 add_subdirectory(src/qt)
-add_library(meta_model STATIC src/share_store.cpp)
-add_library(meta_model::meta_model ALIAS meta_model)
+add_library(kstore STATIC src/share_store.cpp)
+add_library(kstore::kstore ALIAS kstore)
 
-target_compile_features(meta_model PRIVATE cxx_std_20)
-target_include_directories(meta_model PUBLIC include)
-target_link_libraries(meta_model PRIVATE kstore_qt)
+target_compile_features(kstore PRIVATE cxx_std_20)
+target_include_directories(kstore PUBLIC include)
+target_link_libraries(kstore PRIVATE kstore_qt)
 
 if(KSTORE_BUILD_TESTS)
   include(CTest)
