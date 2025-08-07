@@ -1,7 +1,8 @@
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
-add_library(kstore_qt STATIC moc.cpp meta_role.cpp gadget_model.cpp
-                             meta_list_model.cpp qtable_proxy_model.cpp)
+add_library(
+  kstore_qt STATIC moc.cpp meta_role.cpp meta_utils.cpp gadget_model.cpp
+                   meta_list_model.cpp qtable_proxy_model.cpp)
 add_library(kstore::qt ALIAS kstore_qt)
 
 target_compile_features(kstore_qt PRIVATE cxx_std_20)
