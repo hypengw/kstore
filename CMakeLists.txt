@@ -11,6 +11,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 option(KSTORE_BUILD_TESTS "Build tests" ${PROJECT_IS_TOP_LEVEL})
 
+#add_subdirectory(qt)
 add_subdirectory(src/qt)
 add_library(kstore STATIC src/share_store.cpp)
 add_library(kstore::kstore ALIAS kstore)
